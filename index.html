@@ -9,7 +9,7 @@
 <meta name="CCBot" content="noai, noimageai">
 <meta name="Google-Extended" content="noai, noimageai">
 
-<meta name="wy-full-protection" content="v3-show-first">
+<meta name="wy-full-protection" content="v4-textdecoder">
 
 <style id="wy-preguard">
 @media print{html,body,body *{visibility:hidden!important;display:none!important}html::before,body::before{content:""!important;display:none!important}}
@@ -1545,7 +1545,6 @@ h5{font-size:18.5px!important;}
 
 <script id="wy-runtime">
 (function(){
-  // ============= 工具：靜默封鎖 =============
   function _silentBlank(){
     try{
       document.documentElement.innerHTML =
@@ -1557,7 +1556,7 @@ h5{font-size:18.5px!important;}
     }catch(e){}
   }
 
-  // ============= L2 · 列印攔截 =============
+  // L2 · 列印攔截
   try{ window.print = function(){}; }catch(e){}
   document.addEventListener('keydown', function(e){
     var k = e.key;
@@ -1572,7 +1571,7 @@ h5{font-size:18.5px!important;}
     if(mq && mq.addEventListener){ mq.addEventListener('change', function(e){ if(e.matches) _silentBlank(); }); }
   }catch(e){}
 
-  // ============= B · webdriver / Headless 偵測（保守版，只偵測強烈訊號）=============
+  // B · 偵測（保守版）
   function _detectBot(){
     try{
       if(navigator.webdriver === true) return true;
@@ -1583,7 +1582,7 @@ h5{font-size:18.5px!important;}
   }
   if(_detectBot()){ _silentBlank(); return; }
 
-  // ============= L4 · Origin Lock（同步）=============
+  // L4 · Origin Lock
   var ALLOWED_HOST = "weiwen0925.github.io";
   var ALLOWED_PATH = "/dazhidulun-35/";
   function _checkOrigin(){
@@ -1597,76 +1596,91 @@ h5{font-size:18.5px!important;}
   }
   if(!_checkOrigin()){ _silentBlank(); return; }
 
-  // 從這裡開始，page 直接顯示，不再有 preguard 阻擋
-  // L1/L5 decoder 立刻運作：
-  function _decodeAll(){
-    try{
-      var keyBin = atob("V3laTDM1RHpkTFByb3Rreg==");
-      function _xb64(s){
-        try{
-          var bin = atob(s);
-          var out = '';
-          for(var i=0;i<bin.length;i++){
-            out += String.fromCharCode(bin.charCodeAt(i) ^ keyBin.charCodeAt(i % keyBin.length));
-          }
-          return decodeURIComponent(escape(out));
-        }catch(e){ return ''; }
-      }
-      document.querySelectorAll('[data-c]').forEach(function(el){
-        try{
-          var enc = el.getAttribute('data-c');
-          if(!enc) return;
-          var dec = _xb64(enc);
-          if(dec){
-            el.innerHTML = dec;
-            el.removeAttribute('data-c');
-          }
-        }catch(e){}
-      });
-    }catch(e){}
+  // L1/L5 解碼器（v2：TextDecoder 主路徑 + escape 後援）
+  var KEY_B64 = "V3laTDM1RHpkTFByb3Rreg==";
+  function _getKeyBytes(){
+    var keyStr = atob(KEY_B64);
+    var arr = new Uint8Array(keyStr.length);
+    for(var i=0;i<keyStr.length;i++) arr[i] = keyStr.charCodeAt(i);
+    return arr;
   }
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', _decodeAll);
-  }else{
-    _decodeAll();
+  function _xb64(s){
+    if(!s) return '';
+    var keyBytes;
+    try{ keyBytes = _getKeyBytes(); }catch(e){ return ''; }
+    var bin;
+    try{ bin = atob(s); }catch(e){ return ''; }
+    var bytes = new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++){
+      bytes[i] = bin.charCodeAt(i) ^ keyBytes[i % keyBytes.length];
+    }
+    // 主路徑：TextDecoder
+    if(typeof TextDecoder !== 'undefined'){
+      try{ return new TextDecoder('utf-8').decode(bytes); }catch(e){}
+    }
+    // 後援：escape/decodeURIComponent
+    try{
+      var out = '';
+      for(var j=0;j<bytes.length;j++) out += String.fromCharCode(bytes[j]);
+      return decodeURIComponent(escape(out));
+    }catch(e){ return ''; }
   }
 
-  // ============= L6 · 線上活性驗證（背景執行、不阻擋顯示）=============
-  // 改用 Image() 加載 favicon／本頁；GitHub Pages 對 image 加載最寬容
-  // 失敗（onerror）才 _silentBlank，不會因 fetch 詭異行為而誤殺
+  function _decodeAll(){
+    var nodes = document.querySelectorAll('[data-c]');
+    if(!nodes.length) return 0;
+    var n = 0;
+    for(var i=0;i<nodes.length;i++){
+      var el = nodes[i];
+      try{
+        var enc = el.getAttribute('data-c');
+        if(!enc) continue;
+        var dec = _xb64(enc);
+        if(dec){
+          el.innerHTML = dec;
+          el.removeAttribute('data-c');
+          n++;
+        }
+      }catch(e){}
+    }
+    return n;
+  }
+
+  function _runDecode(){
+    var n1 = _decodeAll();
+    // retry：若還有殘留 → 再跑一次（避免某些動態插入元素）
+    setTimeout(function(){
+      var rem = document.querySelectorAll('[data-c]').length;
+      if(rem > 0) _decodeAll();
+    }, 600);
+    // 第三次保險（萬一字型/iframe 載入後又出現）
+    setTimeout(function(){
+      var rem = document.querySelectorAll('[data-c]').length;
+      if(rem > 0) _decodeAll();
+    }, 2000);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', _runDecode);
+  }else{
+    _runDecode();
+  }
+
+  // L6 · 線上活性驗證（背景、image-based）
   setTimeout(function(){
     try{
       var img = new Image();
-      var done = false;
-      var to = setTimeout(function(){
-        if(!done){
-          done = true;
-          // timeout 不視為失敗（網路慢也算正常）
-        }
-      }, 5000);
-      img.onload = function(){
-        if(done) return;
-        done = true;
-        clearTimeout(to);
-        // L6 通過
-      };
-      img.onerror = function(){
-        if(done) return;
-        done = true;
-        clearTimeout(to);
-        // 圖片 404 也算「來源仍在」（因為 host 還在回應），不視為失敗
-      };
-      // 隨機參數避免 cache，加載相同 host 的 favicon
+      img.onload = function(){};
+      img.onerror = function(){};
       img.src = 'https://' + ALLOWED_HOST + '/favicon.ico?_wy=' + Date.now();
     }catch(e){}
   }, 800);
 
-  // ============= 全域防複製、禁文字空白 =============
+  // 全域防複製
   ['contextmenu','copy','cut','selectstart','dragstart'].forEach(function(ev){
     document.addEventListener(ev, function(e){ e.preventDefault();return false; }, true);
   });
 
-  // 確保 wy-ok 標記存在（純為與舊 CSS/JS 相容）
   document.documentElement.classList.add('wy-ok');
 })();
 </script>
