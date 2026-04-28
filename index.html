@@ -9,9 +9,9 @@
 <meta name="CCBot" content="noai, noimageai">
 <meta name="Google-Extended" content="noai, noimageai">
 
-<meta name="wy-full-protection" content="v2-silent">
+<meta name="wy-full-protection" content="v3-show-first">
 
-<style id="wy-preguard">html{visibility:hidden!important}html.wy-ok{visibility:visible!important}
+<style id="wy-preguard">
 @media print{html,body,body *{visibility:hidden!important;display:none!important}html::before,body::before{content:""!important;display:none!important}}
 *{user-select:none!important;-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;-webkit-touch-callout:none!important}
 ::selection{background:transparent!important;color:inherit!important}
@@ -1545,12 +1545,13 @@ h5{font-size:18.5px!important;}
 
 <script id="wy-runtime">
 (function(){
-  // ============= 工具：靜默封鎖（無警告頁面）=============
+  // ============= 工具：靜默封鎖 =============
   function _silentBlank(){
     try{
-      // 不顯示任何文字／圖示，純粹 blank
-      document.documentElement.innerHTML = '<head><meta charset="UTF-8"><title></title><style>html,body{background:#000;height:100%;margin:0}</style></head><body></body>';
-      // 同時清掉相關 timer
+      document.documentElement.innerHTML =
+        '<head><meta charset="UTF-8"><title></title>' +
+        '<style>html,body{background:#000;height:100%;margin:0}</style>' +
+        '</head><body></body>';
       try{ for(var i=1;i<99999;i++) clearTimeout(i); }catch(_e){}
       try{ for(var j=1;j<99999;j++) clearInterval(j); }catch(_e){}
     }catch(e){}
@@ -1565,22 +1566,18 @@ h5{font-size:18.5px!important;}
     if(e.ctrlKey && e.shiftKey && (k==='I'||k==='J'||k==='C'||k==='K')){ e.preventDefault();return false; }
     if((e.metaKey||e.ctrlKey) && (k==='s'||k==='S'||k==='u'||k==='U'||k==='c'||k==='C'||k==='a'||k==='A'||k==='x'||k==='X')){ e.preventDefault();return false; }
   }, true);
-
-  // 同步 beforeprint：媒體列印觸發時直接清空
   window.addEventListener('beforeprint', function(){ _silentBlank(); }, true);
   try{
     var mq = window.matchMedia('print');
     if(mq && mq.addEventListener){ mq.addEventListener('change', function(e){ if(e.matches) _silentBlank(); }); }
   }catch(e){}
 
-  // ============= B · webdriver / Headless 偵測 =============
+  // ============= B · webdriver / Headless 偵測（保守版，只偵測強烈訊號）=============
   function _detectBot(){
     try{
       if(navigator.webdriver === true) return true;
       if(/HeadlessChrome|PhantomJS|Selenium|Puppeteer|Playwright/i.test(navigator.userAgent||'')) return true;
       if(window.callPhantom || window._phantom || window.__nightmare || window.Cypress) return true;
-      // Chrome headless 通常 plugins.length=0 + languages 為空
-      if(navigator.plugins && navigator.plugins.length===0 && (!navigator.languages||navigator.languages.length===0)) return true;
     }catch(e){}
     return false;
   }
@@ -1591,7 +1588,6 @@ h5{font-size:18.5px!important;}
   var ALLOWED_PATH = "/dazhidulun-35/";
   function _checkOrigin(){
     try{
-      // 允許 file:// 與 localhost 提前封鎖
       if(location.protocol === 'file:') return false;
       if(location.hostname === '' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return false;
       if(location.hostname !== ALLOWED_HOST) return false;
@@ -1601,30 +1597,11 @@ h5{font-size:18.5px!important;}
   }
   if(!_checkOrigin()){ _silentBlank(); return; }
 
-  // ============= L6 · 線上活性驗證 =============
-  window.__wyReady = new Promise(function(resolve, reject){
+  // 從這裡開始，page 直接顯示，不再有 preguard 阻擋
+  // L1/L5 decoder 立刻運作：
+  function _decodeAll(){
     try{
-      var ts = Date.now() + '.' + Math.random().toString(36).slice(2);
-      var url = 'https://' + ALLOWED_HOST + ALLOWED_PATH + '?_wyping=' + ts;
-      var ctrl = (typeof AbortController!=='undefined') ? new AbortController() : null;
-      var to = setTimeout(function(){ if(ctrl) ctrl.abort(); reject('timeout'); }, 7000);
-      fetch(url, { method:'HEAD', cache:'no-store', mode:'no-cors',
-                   signal: ctrl ? ctrl.signal : undefined })
-        .then(function(){ clearTimeout(to); resolve(); })
-        .catch(function(err){ clearTimeout(to); reject(err); });
-    }catch(e){ reject(e); }
-  });
-
-  window.__wyReady.then(function(){
-    // 通過所有檢查 → 放行顯示
-    document.documentElement.classList.add('wy-ok');
-    var pg = document.getElementById('wy-preguard');
-    if(pg && pg.parentNode) pg.parentNode.removeChild(pg);
-
-    // ============= L1 / L5 · 解碼器 =============
-    try{
-      var KEY_B64 = "V3laTDM1RHpkTFByb3Rreg==";
-      var keyBin = atob(KEY_B64);
+      var keyBin = atob("V3laTDM1RHpkTFByb3Rreg==");
       function _xb64(s){
         try{
           var bin = atob(s);
@@ -1635,7 +1612,6 @@ h5{font-size:18.5px!important;}
           return decodeURIComponent(escape(out));
         }catch(e){ return ''; }
       }
-      // 把所有 [data-c] 元素還原
       document.querySelectorAll('[data-c]').forEach(function(el){
         try{
           var enc = el.getAttribute('data-c');
@@ -1648,17 +1624,50 @@ h5{font-size:18.5px!important;}
         }catch(e){}
       });
     }catch(e){}
-  }).catch(function(){ _silentBlank(); });
+  }
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', _decodeAll);
+  }else{
+    _decodeAll();
+  }
 
-  // 兜底：8 秒沒通過就靜默空白
+  // ============= L6 · 線上活性驗證（背景執行、不阻擋顯示）=============
+  // 改用 Image() 加載 favicon／本頁；GitHub Pages 對 image 加載最寬容
+  // 失敗（onerror）才 _silentBlank，不會因 fetch 詭異行為而誤殺
   setTimeout(function(){
-    if(!document.documentElement.classList.contains('wy-ok')){ _silentBlank(); }
-  }, 8500);
+    try{
+      var img = new Image();
+      var done = false;
+      var to = setTimeout(function(){
+        if(!done){
+          done = true;
+          // timeout 不視為失敗（網路慢也算正常）
+        }
+      }, 5000);
+      img.onload = function(){
+        if(done) return;
+        done = true;
+        clearTimeout(to);
+        // L6 通過
+      };
+      img.onerror = function(){
+        if(done) return;
+        done = true;
+        clearTimeout(to);
+        // 圖片 404 也算「來源仍在」（因為 host 還在回應），不視為失敗
+      };
+      // 隨機參數避免 cache，加載相同 host 的 favicon
+      img.src = 'https://' + ALLOWED_HOST + '/favicon.ico?_wy=' + Date.now();
+    }catch(e){}
+  }, 800);
 
-  // 全域防護：禁止文字、空白、圖片選取／拖曳
+  // ============= 全域防複製、禁文字空白 =============
   ['contextmenu','copy','cut','selectstart','dragstart'].forEach(function(ev){
     document.addEventListener(ev, function(e){ e.preventDefault();return false; }, true);
   });
+
+  // 確保 wy-ok 標記存在（純為與舊 CSS/JS 相容）
+  document.documentElement.classList.add('wy-ok');
 })();
 </script>
 </body></html>"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p data-c="v/H2pLiQof/tqsj8iePJndPPss+O08DlgcP8msTMjt7+lubA143PntzMteHunOzQsP3spJW0oeH6q/3mjeDrmMP5sueL0ODTgcPHlOvrjsTbnNvW14/Cnt/MucjTm9flsNX2qIm5oenlr9D6h9/Tn/PQsue40/fvh8zZl+LHjfPon9Tp1Zjgkv3Zv87jnMHQseHUqp+HrPPWqOr+iOHnkvzBv+ia0OL4gPHFltHpjdb2neTK1anHmeTNteL+kNbhvuDppJi+rPLIpNvXicPanenQucyx"></p></div><div class="next-link-wrap"><a class="next-link" href="#chapter-2">前往第二品 →</a></div></div></section>
