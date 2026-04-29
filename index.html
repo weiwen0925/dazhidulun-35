@@ -9,7 +9,7 @@
 <meta name="CCBot" content="noai, noimageai">
 <meta name="Google-Extended" content="noai, noimageai">
 
-<meta name="wy-full-protection" content="v4-textdecoder">
+<meta name="wy-full-protection" content="v5-outer-fixed">
 
 <style id="wy-preguard">
 @media print{html,body,body *{visibility:hidden!important;display:none!important}html::before,body::before{content:""!important;display:none!important}}
@@ -1527,164 +1527,7 @@ h5{font-size:18.5px!important;}
     }catch(ex){}
   },true);
 })();
-</script><script>
-/* === 卷名徽章 → 平滑回頂 === */
-(function(){
-  var v = document.querySelector('.sb-volume');
-  if(!v) return;
-  v.addEventListener('click',function(e){
-    e.preventDefault();
-    e.stopPropagation();
-    window.scrollTo({top:0,behavior:'smooth'});
-    // 順便關閉手機版滑出側欄
-    var sb = document.getElementById('sb');
-    if(sb && sb.classList.contains('open')) sb.classList.remove('open');
-  },false);
-})();
-</script>
-
-<script id="wy-runtime">
-(function(){
-  function _silentBlank(){
-    try{
-      document.documentElement.innerHTML =
-        '<head><meta charset="UTF-8"><title></title>' +
-        '<style>html,body{background:#000;height:100%;margin:0}</style>' +
-        '</head><body></body>';
-      try{ for(var i=1;i<99999;i++) clearTimeout(i); }catch(_e){}
-      try{ for(var j=1;j<99999;j++) clearInterval(j); }catch(_e){}
-    }catch(e){}
-  }
-
-  // L2 · 列印攔截
-  try{ window.print = function(){}; }catch(e){}
-  document.addEventListener('keydown', function(e){
-    var k = e.key;
-    if((e.metaKey||e.ctrlKey) && (k==='p'||k==='P')){ e.preventDefault();e.stopPropagation();return false; }
-    if(k==='F12'){ e.preventDefault();return false; }
-    if(e.ctrlKey && e.shiftKey && (k==='I'||k==='J'||k==='C'||k==='K')){ e.preventDefault();return false; }
-    if((e.metaKey||e.ctrlKey) && (k==='s'||k==='S'||k==='u'||k==='U'||k==='c'||k==='C'||k==='a'||k==='A'||k==='x'||k==='X')){ e.preventDefault();return false; }
-  }, true);
-  window.addEventListener('beforeprint', function(){ _silentBlank(); }, true);
-  try{
-    var mq = window.matchMedia('print');
-    if(mq && mq.addEventListener){ mq.addEventListener('change', function(e){ if(e.matches) _silentBlank(); }); }
-  }catch(e){}
-
-  // B · 偵測（保守版）
-  function _detectBot(){
-    try{
-      if(navigator.webdriver === true) return true;
-      if(/HeadlessChrome|PhantomJS|Selenium|Puppeteer|Playwright/i.test(navigator.userAgent||'')) return true;
-      if(window.callPhantom || window._phantom || window.__nightmare || window.Cypress) return true;
-    }catch(e){}
-    return false;
-  }
-  if(_detectBot()){ _silentBlank(); return; }
-
-  // L4 · Origin Lock
-  var ALLOWED_HOST = "weiwen0925.github.io";
-  var ALLOWED_PATH = "/dazhidulun-35/";
-  function _checkOrigin(){
-    try{
-      if(location.protocol === 'file:') return false;
-      if(location.hostname === '' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return false;
-      if(location.hostname !== ALLOWED_HOST) return false;
-      if(location.pathname.indexOf(ALLOWED_PATH) !== 0) return false;
-      return true;
-    }catch(e){ return false; }
-  }
-  if(!_checkOrigin()){ _silentBlank(); return; }
-
-  // L1/L5 解碼器（v2：TextDecoder 主路徑 + escape 後援）
-  var KEY_B64 = "V3laTDM1RHpkTFByb3Rreg==";
-  function _getKeyBytes(){
-    var keyStr = atob(KEY_B64);
-    var arr = new Uint8Array(keyStr.length);
-    for(var i=0;i<keyStr.length;i++) arr[i] = keyStr.charCodeAt(i);
-    return arr;
-  }
-  function _xb64(s){
-    if(!s) return '';
-    var keyBytes;
-    try{ keyBytes = _getKeyBytes(); }catch(e){ return ''; }
-    var bin;
-    try{ bin = atob(s); }catch(e){ return ''; }
-    var bytes = new Uint8Array(bin.length);
-    for(var i=0;i<bin.length;i++){
-      bytes[i] = bin.charCodeAt(i) ^ keyBytes[i % keyBytes.length];
-    }
-    // 主路徑：TextDecoder
-    if(typeof TextDecoder !== 'undefined'){
-      try{ return new TextDecoder('utf-8').decode(bytes); }catch(e){}
-    }
-    // 後援：escape/decodeURIComponent
-    try{
-      var out = '';
-      for(var j=0;j<bytes.length;j++) out += String.fromCharCode(bytes[j]);
-      return decodeURIComponent(escape(out));
-    }catch(e){ return ''; }
-  }
-
-  function _decodeAll(){
-    var nodes = document.querySelectorAll('[data-c]');
-    if(!nodes.length) return 0;
-    var n = 0;
-    for(var i=0;i<nodes.length;i++){
-      var el = nodes[i];
-      try{
-        var enc = el.getAttribute('data-c');
-        if(!enc) continue;
-        var dec = _xb64(enc);
-        if(dec){
-          el.innerHTML = dec;
-          el.removeAttribute('data-c');
-          n++;
-        }
-      }catch(e){}
-    }
-    return n;
-  }
-
-  function _runDecode(){
-    var n1 = _decodeAll();
-    // retry：若還有殘留 → 再跑一次（避免某些動態插入元素）
-    setTimeout(function(){
-      var rem = document.querySelectorAll('[data-c]').length;
-      if(rem > 0) _decodeAll();
-    }, 600);
-    // 第三次保險（萬一字型/iframe 載入後又出現）
-    setTimeout(function(){
-      var rem = document.querySelectorAll('[data-c]').length;
-      if(rem > 0) _decodeAll();
-    }, 2000);
-  }
-
-  if(document.readyState === 'loading'){
-    document.addEventListener('DOMContentLoaded', _runDecode);
-  }else{
-    _runDecode();
-  }
-
-  // L6 · 線上活性驗證（背景、image-based）
-  setTimeout(function(){
-    try{
-      var img = new Image();
-      img.onload = function(){};
-      img.onerror = function(){};
-      img.src = 'https://' + ALLOWED_HOST + '/favicon.ico?_wy=' + Date.now();
-    }catch(e){}
-  }, 800);
-
-  // 全域防複製
-  ['contextmenu','copy','cut','selectstart','dragstart'].forEach(function(ev){
-    document.addEventListener(ev, function(e){ e.preventDefault();return false; }, true);
-  });
-
-  document.documentElement.classList.add('wy-ok');
-})();
-</script>
-</body></html>"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p data-c="v/H2pLiQof/tqsj8iePJndPPss+O08DlgcP8msTMjt7+lubA143PntzMteHunOzQsP3spJW0oeH6q/3mjeDrmMP5sueL0ODTgcPHlOvrjsTbnNvW14/Cnt/MucjTm9flsNX2qIm5oenlr9D6h9/Tn/PQsue40/fvh8zZl+LHjfPon9Tp1Zjgkv3Zv87jnMHQseHUqp+HrPPWqOr+iOHnkvzBv+ia0OL4gPHFltHpjdb2neTK1anHmeTNteL+kNbhvuDppJi+rPLIpNvXicPanenQucyx"></p></div><div class="next-link-wrap"><a class="next-link" href="#chapter-2">前往第二品 →</a></div></div></section>
+</script></body></html>"></iframe><div class="bridge bridge-outro"><div class="bridge-label">承先啟後</div><p data-c="v/H2pLiQof/tqsj8iePJndPPss+O08DlgcP8msTMjt7+lubA143PntzMteHunOzQsP3spJW0oeH6q/3mjeDrmMP5sueL0ODTgcPHlOvrjsTbnNvW14/Cnt/MucjTm9flsNX2qIm5oenlr9D6h9/Tn/PQsue40/fvh8zZl+LHjfPon9Tp1Zjgkv3Zv87jnMHQseHUqp+HrPPWqOr+iOHnkvzBv+ia0OL4gPHFltHpjdb2neTK1anHmeTNteL+kNbhvuDppJi+rPLIpNvXicPanenQucyx"></p></div><div class="next-link-wrap"><a class="next-link" href="#chapter-2">前往第二品 →</a></div></div></section>
 <section class="chapter" id="chapter-2"><div class="ch-head"><div class="ch-num">卷三十五 · 第二品</div><div class="ch-name" data-c="v9LiqZecrNHvquPn"></div><div class="ch-sub">中觀邏輯解構 · 從宇宙維度到二諦緣起</div></div><div class="ch-body"><div class="bridge bridge-intro"><div class="bridge-label">本品要旨</div><p data-c="sfDlqr2Qo9bIqOjyiufqnc39ssSf3c/fgcnZlPf6hMbbn8bg1qbFk+/muevcnezxsfbKqpKmoeHEq/37h9/Tn/PQvda33e/xgv/Fl8/AjeP4mtrO257Sntz3tfLwl+v2v9LiqZecocT6qO3nh/Tnnun/ucy+0PXvjdrbl8HzjtTOnuzh1o/inf7IuNvck9/KsfbVpIyFq8boqdb/i8/Onu/Usuuz3Mb1jPD/m+/kjsvzkf3v1ZLPmPDMsubvnMDxscrPpLOwref6qf/UjPTqnN75sue40/fvgPb2m/LqjtXxmtrN27b5nODTtvvvku/lsunWqp6NovrDq/nIjPTpnPrdv8GA3czWjMf1lPP3j8LdmtrA1LHlks7muPLjnMHQtPnbq7eUrPv6pND+h/X1mdf0vda33frVjOHZl+rRguzXmtrO"></p></div><iframe class="ch-frame" srcdoc="<!DOCTYPE html><html lang=zh-Hant><head><meta charset=UTF-8><link rel=stylesheet href='https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&amp;family=Noto+Sans+TC:wght@300;400;500;700&amp;display=swap'><style>
 :root{
   --bg:#f7f3ec; --text:#2c2416; --text2:#5a4e3a; --text-muted:#6B5B4B;
@@ -17625,6 +17468,148 @@ document.querySelectorAll('.ch-body p').forEach(function(p){
   if(/^(問曰：|答曰：)/.test(t)) p.classList.add('qa-3');
   else if(/^(問：|答：)/.test(t)) p.classList.add('qa-2');
 });
+</script>
+<script>
+/* === 卷名徽章 → 平滑回頂 === */
+(function(){
+  var v = document.querySelector('.sb-volume');
+  if(!v) return;
+  v.addEventListener('click',function(e){
+    e.preventDefault();
+    e.stopPropagation();
+    window.scrollTo({top:0,behavior:'smooth'});
+    var sb = document.getElementById('sb');
+    if(sb && sb.classList.contains('open')) sb.classList.remove('open');
+  },false);
+})();
+</script>
+<script id="wy-runtime">
+(function(){
+  function _silentBlank(){
+    try{
+      document.documentElement.innerHTML =
+        '<head><meta charset="UTF-8"><title></title>' +
+        '<style>html,body{background:#000;height:100%;margin:0}</style>' +
+        '</head><body></body>';
+      try{ for(var i=1;i<99999;i++) clearTimeout(i); }catch(_e){}
+      try{ for(var j=1;j<99999;j++) clearInterval(j); }catch(_e){}
+    }catch(e){}
+  }
+  try{ window.print = function(){}; }catch(e){}
+  document.addEventListener('keydown', function(e){
+    var k = e.key;
+    if((e.metaKey||e.ctrlKey) && (k==='p'||k==='P')){ e.preventDefault();e.stopPropagation();return false; }
+    if(k==='F12'){ e.preventDefault();return false; }
+    if(e.ctrlKey && e.shiftKey && (k==='I'||k==='J'||k==='C'||k==='K')){ e.preventDefault();return false; }
+    if((e.metaKey||e.ctrlKey) && (k==='s'||k==='S'||k==='u'||k==='U'||k==='c'||k==='C'||k==='a'||k==='A'||k==='x'||k==='X')){ e.preventDefault();return false; }
+  }, true);
+  window.addEventListener('beforeprint', function(){ _silentBlank(); }, true);
+  try{
+    var mq = window.matchMedia('print');
+    if(mq && mq.addEventListener){ mq.addEventListener('change', function(e){ if(e.matches) _silentBlank(); }); }
+  }catch(e){}
+
+  function _detectBot(){
+    try{
+      if(navigator.webdriver === true) return true;
+      if(/HeadlessChrome|PhantomJS|Selenium|Puppeteer|Playwright/i.test(navigator.userAgent||'')) return true;
+      if(window.callPhantom || window._phantom || window.__nightmare || window.Cypress) return true;
+    }catch(e){}
+    return false;
+  }
+  if(_detectBot()){ _silentBlank(); return; }
+
+  var ALLOWED_HOST = "weiwen0925.github.io";
+  var ALLOWED_PATH = "/dazhidulun-35/";
+  function _checkOrigin(){
+    try{
+      if(location.protocol === 'file:') return false;
+      if(location.hostname === '' || location.hostname === 'localhost' || location.hostname === '127.0.0.1') return false;
+      if(location.hostname !== ALLOWED_HOST) return false;
+      if(location.pathname.indexOf(ALLOWED_PATH) !== 0) return false;
+      return true;
+    }catch(e){ return false; }
+  }
+  if(!_checkOrigin()){ _silentBlank(); return; }
+
+  var KEY_B64 = "V3laTDM1RHpkTFByb3Rreg==";
+  function _getKeyBytes(){
+    var keyStr = atob(KEY_B64);
+    var arr = new Uint8Array(keyStr.length);
+    for(var i=0;i<keyStr.length;i++) arr[i] = keyStr.charCodeAt(i);
+    return arr;
+  }
+  function _xb64(s){
+    if(!s) return '';
+    var keyBytes;
+    try{ keyBytes = _getKeyBytes(); }catch(e){ return ''; }
+    var bin;
+    try{ bin = atob(s); }catch(e){ return ''; }
+    var bytes = new Uint8Array(bin.length);
+    for(var i=0;i<bin.length;i++){
+      bytes[i] = bin.charCodeAt(i) ^ keyBytes[i % keyBytes.length];
+    }
+    if(typeof TextDecoder !== 'undefined'){
+      try{ return new TextDecoder('utf-8').decode(bytes); }catch(e){}
+    }
+    try{
+      var out = '';
+      for(var j=0;j<bytes.length;j++) out += String.fromCharCode(bytes[j]);
+      return decodeURIComponent(escape(out));
+    }catch(e){ return ''; }
+  }
+
+  function _decodeAll(){
+    var nodes = document.querySelectorAll('[data-c]');
+    if(!nodes.length) return 0;
+    var n = 0;
+    for(var i=0;i<nodes.length;i++){
+      var el = nodes[i];
+      try{
+        var enc = el.getAttribute('data-c');
+        if(!enc) continue;
+        var dec = _xb64(enc);
+        if(dec){
+          el.innerHTML = dec;
+          el.removeAttribute('data-c');
+          n++;
+        }
+      }catch(e){}
+    }
+    return n;
+  }
+
+  function _runDecode(){
+    _decodeAll();
+    setTimeout(function(){
+      if(document.querySelectorAll('[data-c]').length>0) _decodeAll();
+    }, 600);
+    setTimeout(function(){
+      if(document.querySelectorAll('[data-c]').length>0) _decodeAll();
+    }, 2000);
+  }
+
+  if(document.readyState === 'loading'){
+    document.addEventListener('DOMContentLoaded', _runDecode);
+  }else{
+    _runDecode();
+  }
+
+  setTimeout(function(){
+    try{
+      var img = new Image();
+      img.onload = function(){};
+      img.onerror = function(){};
+      img.src = 'https://' + ALLOWED_HOST + '/favicon.ico?_wy=' + Date.now();
+    }catch(e){}
+  }, 800);
+
+  ['contextmenu','copy','cut','selectstart','dragstart'].forEach(function(ev){
+    document.addEventListener(ev, function(e){ e.preventDefault();return false; }, true);
+  });
+
+  document.documentElement.classList.add('wy-ok');
+})();
 </script>
 </body>
 </html>
