@@ -695,4 +695,57 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")MODAL.classL
 upd();var c=0,iv=setInterval(function(){upd();if(++c>40)clearInterval(iv);},250);
 })();</script>
 <!--WY-C35P4:END-->
+<!--WY-C35P5:BEGIN-->
+<style id="wy-c35p5-css">
+.c35p5-fabbox{position:fixed;right:22px;bottom:78px;z-index:121;display:none;}
+.c35p5-fabbox.show{display:block;}
+.c35p5-btn{display:inline-flex;align-items:center;gap:9px;font-family:"Noto Sans TC",sans-serif;letter-spacing:.5px;color:#f7ecd2;background:linear-gradient(135deg,#573f38,#2e2420);padding:8px 15px;border-radius:22px;border:1px solid rgba(184,134,11,.6);box-shadow:0 4px 16px rgba(0,0,0,.3);cursor:pointer;opacity:.96;transition:opacity .3s,transform .2s,box-shadow .2s;}
+.c35p5-btn:hover{opacity:1;transform:translateY(-2px);box-shadow:0 6px 22px rgba(184,134,11,.5);}
+.c35p5-ic{font-size:15px;line-height:1;color:#ecc978;}
+.c35p5-ls{display:flex;flex-direction:column;align-items:flex-start;line-height:1.22;}
+.c35p5-l1{font-size:10.5px;font-weight:500;opacity:.82;white-space:nowrap;}
+.c35p5-l2{font-size:13px;font-weight:700;color:#faf1d8;white-space:nowrap;}
+.c35p5-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(28,20,12,.58);padding:16px;}
+.c35p5-modal.open{display:flex;}
+.c35p5-card{position:relative;background:#fbf7ee;max-width:900px;width:100%;max-height:88vh;overflow:auto;border:1px solid #d8c8ac;border-radius:14px;padding:30px 24px 22px;box-shadow:0 18px 50px rgba(0,0,0,.4);}
+.c35p5-card h3{margin:0 0 2px;font-family:"Noto Serif TC",serif;font-size:20px;color:#8b5e3c;}
+.c35p5-card .sub{margin:0 0 14px;font-family:"Noto Sans TC",sans-serif;font-size:13px;color:#6b5b4b;}
+.c35p5-close{position:absolute;top:12px;right:16px;width:34px;height:34px;border:none;border-radius:50%;background:#efe6d4;color:#8b5e3c;font-size:22px;line-height:1;cursor:pointer;z-index:2;}
+.c35p5-close:hover{background:#e3d5b8;}
+.c35p5-tbl{width:100%;border-collapse:collapse;font-family:"Noto Sans TC",sans-serif;font-size:13px;margin:.3em 0 1.2em;}
+.c35p5-tbl caption{font-family:"Noto Serif TC",serif;font-weight:700;color:#8b5e3c;font-size:14.5px;text-align:left;margin:.6em 0 .35em;line-height:1.5;}
+.c35p5-tbl th,.c35p5-tbl td{border:1px solid #d8c8ac;padding:.45em .6em;text-align:left;vertical-align:top;line-height:1.6;}
+.c35p5-tbl thead th{background:#8b5e3c;color:#f7ecd2;font-weight:700;}
+.c35p5-tbl td:first-child{white-space:nowrap;color:#8b5e3c;font-weight:700;background:#f0e8d8;}
+.c35p5-tbl tbody tr:nth-child(even) td{background:#f6efe0;}
+.c35p5-tbl b{color:#8b2500;}
+.c35p5-note{font-size:12px;color:#5a4e3a;line-height:1.9;background:#f6efe0;border-left:3px solid #c4956a;border-radius:0 6px 6px 0;padding:10px 13px;margin:4px 0 0;}
+.c35p5-note b{color:#8b2500;}
+@media(max-width:900px){.c35p5-fabbox{right:14px;}.c35p5-tbl{font-size:11.5px;}.c35p5-card{padding:26px 14px 16px;}}
+</style>
+<div class="c35p5-fabbox" id="c35p5Box"><button class="c35p5-btn" id="c35p5Btn" type="button" aria-label="開啟全景總表"><span class="c35p5-ic">▦</span><span class="c35p5-ls"><span class="c35p5-l1">本品 · 三種菩薩品</span><span class="c35p5-l2">無生法忍·空有相即</span></span></button></div><div class="c35p5-modal" id="c35p5Modal" role="dialog" aria-modal="true" aria-label="全景總表"><div class="c35p5-card"><button class="c35p5-close" id="c35p5Close" type="button" aria-label="關閉">×</button><h3>卷三十五·第五品 全景總表</h3><p class="sub">卷三十五·第五品｜舍利弗根本叩問·三種菩薩型態·中觀統攝·無生法忍樞紐</p><table class="c35p5-tbl"><caption>一、核心經文與三種菩薩型態（本品主骨架）</caption><thead><tr><th>環節</th><th>內容</th></tr></thead><tbody><tr><td>根本叩問</td><td>舍利弗白佛：「菩薩摩訶薩要當有父母妻子親族知識耶？」——追問菩薩道與世間牽絆是否具必然性</td></tr><tr><td>世尊三種回應</td><td>或有菩薩有父母妻子眷屬；或有菩薩從初發意斷婬欲修童真行乃至成佛不犯色欲；或有菩薩方便力故受五欲已出家得阿耨多羅三藐三菩提</td></tr><tr><td>第一種·世間隨順型</td><td>如世間人受五欲，後捨離出家得菩提道——漸進式出離，映射釋迦本生（先受欲後出家），受欲為同事攝前置準備</td></tr><tr><td>第二種·大功德牢固型</td><td>初發心時斷於婬欲，乃至成佛道；或法身或肉身，或離欲或未離欲——四象限排列，離欲未離欲與斷婬欲分屬不同煩惱層級</td></tr><tr><td>第三種·清淨法身方便型</td><td>得無生法忍住六神通，為教化眾生化現轉輪聖王等權力身，以同事攝技巧廣利眾生——前提門檻為八地以上證量</td></tr></tbody></table><table class="c35p5-tbl"><caption>二、中觀統攝與邏輯樞紐</caption><thead><tr><th>環節</th><th>內容</th></tr></thead><tbody><tr><td>同樣受欲本質迥異</td><td>第一類受欲是業力隨順、從迷轉悟；第三類受欲是乘願再來、悲智雙運——同一行徑，凡聖本體論狀態判若雲泥</td></tr><tr><td>表相矛盾本質統一</td><td>俗諦上三類菩薩行徑各異（有妻兒/修童真/化現國王），真諦上同歸阿耨多羅三藐三菩提／無生法忍</td></tr><tr><td>性空緣起非對立</td><td>離欲（性空實踐）與入世受欲（緣起隨順）看似對立實則互為表裡；徹透性空方能無罣礙隨順緣起</td></tr><tr><td>方便本體論轉向</td><td>對八地以上菩薩，方便不再是度眾手段而是般若智在現象界的動態必然顯現——智慧本身的自然外溢</td></tr><tr><td>無生法忍三重功能</td><td>劃分凡聖（八地證量標誌）；消解教理矛盾（解釋未離欲仍能斷婬欲）；判別方便真偽（唯證無生者入世受欲方為真方便）</td></tr></tbody></table><table class="c35p5-tbl"><caption>三、文獻對讀與全景結語</caption><thead><tr><th>環節</th><th>內容</th></tr></thead><tbody><tr><td>離欲攝眾雙螺旋</td><td>聲聞乘偏重單一股（離欲），大乘菩薩道必智（離欲）悲（不捨眾生）雙股並行，共構清淨法身</td></tr><tr><td>中論句型對讀</td><td>《中論》「以有空義故，一切法得成」對應本品：空義＝清淨法身／證無生法忍；一切法＝化現轉輪聖王／父母妻子</td></tr><tr><td>戒律史與身之定義議題</td><td>童真戒律觀變遷、肉身法身定義游移——留待梵漢對勘進階研究之學術延伸議題</td></tr><tr><td>核心論斷</td><td>捨離與涉入非道次第必然先後，而是依願力法身境界而異的中觀緣起顯現；無生法忍為劃分凡聖判別方便真偽的邏輯樞紐</td></tr><tr><td>全品結語</td><td>捨離與涉入本無定法，願力與證量乃判其深；空有相即悲智雙運，此即菩薩入世與出世的中觀辯證</td></tr></tbody></table><p class="c35p5-note">舍利弗一問菩薩是否必有眷屬，逼出世尊三種菩薩的巧妙回應——大乘道從不強求單一路徑，而以無生法忍為判準，劃開業力隨順與乘願再來的本體論分野。表相上或有妻兒、或修梵行、或現王身，皆可同證菩提；法身非孤高，方便非造作，一切收攝於空有相即、悲智雙運的中道。</p></div></div>
+<script id="wy-c35p5-js">(function(){
+var CH=document.querySelectorAll("section.chapter");
+var BTN=document.getElementById("c35p5Btn"),BOX=document.getElementById("c35p5Box"),MODAL=document.getElementById("c35p5Modal");
+if(!CH.length||!BTN||!BOX||!MODAL)return;
+var TARGET=4;
+function curIdx(){var lim=window.innerHeight*0.35,idx=-1;for(var i=0;i<CH.length;i++){if(CH[i].getBoundingClientRect().top<lim)idx=i;}return idx;}
+var FSEL="#vidFab,.vid-fab,#videoFab,#wyVideoBtn,#wyFab,#wy-fab,#vid-floating,#floatingYt,.video-fab,.wy-vbtn,.wy-video-fab,.floating-yt",_fab,_ft=false;
+function fab(){if(_fab&&_fab.isConnected)return _fab;if(_ft)return _fab;_ft=true;_fab=document.querySelector(FSEL);return _fab;}
+function place(){
+  var base=null,eb=document.querySelector(".wy-ebox");
+  if(eb){var r=eb.getBoundingClientRect();if(r.height>4)base=Math.round(window.innerHeight-r.top)+8;}
+  if(base===null){var fEl=fab();if(fEl){var fr=fEl.getBoundingClientRect(),st=getComputedStyle(fEl);if(fr.height>0&&st.display!=="none"&&st.visibility!=="hidden")base=Math.round(window.innerHeight-fr.top)+10;}}
+  if(base===null)base=78;
+  BOX.style.bottom=base+"px";
+}
+function upd(){place();BOX.classList.toggle("show",curIdx()===TARGET);}
+var tk=false;function onS(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;upd();});}}
+window.addEventListener("scroll",onS,{passive:true});window.addEventListener("resize",onS);
+BTN.addEventListener("click",function(){MODAL.classList.add("open");});
+MODAL.addEventListener("click",function(e){if(e.target===MODAL||e.target.id==="c35p5Close")MODAL.classList.remove("open");});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")MODAL.classList.remove("open");});
+upd();var c=0,iv=setInterval(function(){upd();if(++c>40)clearInterval(iv);},250);
+})();</script>
+<!--WY-C35P5:END-->
 </body></html>
