@@ -2637,4 +2637,60 @@ document.addEventListener("keydown",function(e){if(e.key==="Escape")MODAL.classL
 upd();var c=0,iv=setInterval(function(){upd();if(++c>40)clearInterval(iv);},250);
 })();</script>
 <!--WY-BH35P15:END-->
+<!--WY-BH35P16:BEGIN-->
+<style id="wy-bh35p16-css">
+.bh35p16-fabbox{position:fixed;right:22px;bottom:150px;z-index:123;display:none;}
+.bh35p16-fabbox.show{display:block;}
+.bh35p16-btn{display:inline-flex;align-items:center;gap:9px;font-family:"Noto Sans TC",sans-serif;letter-spacing:.5px;color:#f7ecd2;background:linear-gradient(135deg,#4a5a68,#232d36);padding:8px 15px;border-radius:22px;border:1px solid rgba(150,180,205,.55);box-shadow:0 4px 16px rgba(0,0,0,.32);cursor:pointer;opacity:.96;transition:opacity .3s,transform .2s,box-shadow .2s;}
+.bh35p16-btn:hover{opacity:1;transform:translateY(-2px);box-shadow:0 6px 22px rgba(120,160,200,.5);}
+.bh35p16-ic{font-size:15px;line-height:1;color:#bcd4ea;}
+.bh35p16-ls{display:flex;flex-direction:column;align-items:flex-start;line-height:1.22;}
+.bh35p16-l1{font-size:10.5px;font-weight:500;opacity:.82;white-space:nowrap;}
+.bh35p16-l2{font-size:13px;font-weight:700;color:#eef4fa;white-space:nowrap;}
+.bh35p16-modal{position:fixed;inset:0;z-index:200;display:none;align-items:center;justify-content:center;background:rgba(22,26,30,.6);padding:16px;}
+.bh35p16-modal.open{display:flex;}
+.bh35p16-card{position:relative;background:#fbf7ee;max-width:1080px;width:100%;max-height:90vh;overflow:auto;border:1px solid #d3cdbf;border-radius:14px;padding:28px 22px 20px;box-shadow:0 18px 50px rgba(0,0,0,.4);}
+.bh35p16-card h3{margin:0 0 2px;font-family:"Noto Serif TC",serif;font-size:20px;color:#3f5160;}
+.bh35p16-card .sub{margin:0 0 12px;font-family:"Noto Sans TC",sans-serif;font-size:12.5px;color:#5b6b78;}
+.bh35p16-close{position:absolute;top:12px;right:16px;width:34px;height:34px;border:none;border-radius:50%;background:#eceef0;color:#3f5160;font-size:22px;line-height:1;cursor:pointer;z-index:2;}
+.bh35p16-close:hover{background:#dde2e6;}
+.bh35p16-tbl{width:100%;border-collapse:collapse;font-size:12.8px;margin:.2em 0 1em;}
+.bh35p16-tbl caption{font-family:"Noto Serif TC",serif;font-weight:700;color:#3f5160;font-size:14px;text-align:left;margin:.4em 0 .5em;}
+.bh35p16-tbl th,.bh35p16-tbl td{border:1px solid #d8d2c4;padding:.5em .65em;text-align:left;vertical-align:top;line-height:1.72;}
+.bh35p16-tbl thead th{background:#3f5160;color:#eef4fa;font-weight:700;position:sticky;top:0;}
+.bh35p16-tbl thead th:nth-child(1){width:32%;}.bh35p16-tbl thead th:nth-child(2){width:41%;}.bh35p16-tbl thead th:nth-child(3){width:27%;}
+.bh35p16-src{font-family:"Noto Serif TC",serif;color:#5a4636;background:#f6efe0;letter-spacing:.3px;}
+.bh35p16-guan{background:#eef2f5;color:#37505f;}
+.bh35p16-tbl tbody tr:nth-child(even) td{background:#faf6ee;}
+.bh35p16-tbl tbody tr:nth-child(even) td.bh35p16-guan{background:#e8eef2;}
+.bh35p16-tbl b{color:#8b2500;}
+.bh35p16-guan b{color:#2f6b5a;}
+.bh35p16-note{font-size:12px;color:#4a5560;line-height:1.95;background:#eef2f5;border-left:3px solid #7f9cb5;border-radius:0 6px 6px 0;padding:11px 14px;margin:2px 0 0;}
+.bh35p16-note b{color:#8b2500;}
+@media(max-width:900px){.bh35p16-fabbox{right:14px;}.bh35p16-tbl{font-size:11px;}.bh35p16-card{padding:22px 12px 14px;}}
+</style>
+<div class="bh35p16-fabbox" id="bh35p16Box"><button class="bh35p16-btn" id="bh35p16Btn" type="button" aria-label="開啟白話翻譯表"><span class="bh35p16-ic">譯</span><span class="bh35p16-ls"><span class="bh35p16-l1">本品 · 原文·白話·中觀</span><span class="bh35p16-l2">白話翻譯表</span></span></button></div><div class="bh35p16-modal" id="bh35p16Modal" role="dialog" aria-modal="true"><div class="bh35p16-card"><button class="bh35p16-close" id="bh35p16Close" type="button" aria-label="關閉">×</button><h3>卷三十五 · 第16品 白話翻譯表（螢火喻品）</h3><p class="sub">《大智度論》卷三十五 · 螢火喻品 · 螢火不敢自擬普照·夜光與日光·質勝於量 · 原文↔白話↔中觀概念 逐段對照</p><table class="bh35p16-tbl"><caption>螢火喻品·原文｜白話翻譯｜中觀概念（共3段）</caption><thead><tr><th>原文</th><th>白話翻譯</th><th>中觀概念</th></tr></thead><tbody><tr><td class="bh35p16-src">佛告舍利弗：「菩薩摩訶薩能作是念：『我當行六波羅蜜乃至十八不共法，成阿耨多羅三藐三菩提，度脫無量阿僧祇眾生令得涅槃。』譬如螢火虫不作是念：『我力能照一閻浮提普令大明。』諸阿羅漢、辟支佛亦如是，不作是念：『我等行六波羅蜜乃至十八不共法，得阿耨多羅三藐三菩提，度脫無量阿僧祇眾生令得涅槃。』」</td><td>佛告訴舍利弗：「菩薩摩訶薩能夠生起這樣的心念：『我將修行六波羅蜜乃至十八不共法，成就無上正等正覺，度脫無量阿僧祇眾生，使他們得到涅槃。』就好比螢火虫絕不會這樣想：『我的光亮足以照遍整個閻浮提，讓大地一片光明。』諸阿羅漢、辟支佛也是同樣的道理，他們不會生起這樣的心念：『我們要修行六波羅蜜乃至十八不共法，證得無上正等正覺，度脫無量阿僧祇眾生，使他們得到涅槃。』」</td><td class="bh35p16-guan"><b>螢火不敢自擬普照——喻立品名</b>——本段以螢火虫自知光亮有限、絕不妄想普照閻浮提為喻，直接對應二乘不敢發「度無量眾生令得涅槃」的廣大心願，是「螢火喻品」品名所本的核心譬喻，將抽象的智慧量級差距，轉化為具體可感的形象。</td></tr><tr><td class="bh35p16-src">所以十方恒河沙舍利弗、目連不如一菩薩者，譬如螢火虫，雖眾多各有所照，不及於日。螢火虫亦不作是念：「我光明能照一閻浮提。」諸聲聞、辟支佛不作是念：「我智慧能照無量無邊眾生。」</td><td>之所以說十方恆河沙數那麼多的舍利弗、目犍連，也比不上一位菩薩，就好比螢火虫雖然數量眾多，各自也能發出一點光亮，但終究比不上太陽的光明。螢火虫從不會想：「我的光明能照亮整個閻浮提。」同樣地，聲聞、辟支佛也不會想：「我的智慧能夠照亮無量無邊的眾生。」</td><td class="bh35p16-guan"><b>群螢不及一日——數量與質量的中觀辨析</b>——論主特別強調差距不在「數量」（縱使有恆河沙數的舍利弗、目連）而在「質量」（智慧所照的廣度與願力），破斥以量取勝的世俗計較心，彰顯菩薩智慧「質勝於量」的中觀論旨。</td></tr><tr><td class="bh35p16-src">如螢火虫，夜能有所照，日出則不能。諸聲聞、辟支佛亦如是，未有大菩薩時，能師子吼說法教化；有菩薩出，不能有所作。</td><td>就像螢火虫，在夜晚還能發出一點光亮，可是太陽一出來，它的光就顯不出來了。聲聞、辟支佛也是同樣的道理，在還沒有大菩薩出現的時候，還能像獅子吼一般說法教化眾生；可是一旦有菩薩出現，他們便難以再有所作為了。</td><td class="bh35p16-guan"><b>夜光與日光——階段性效用的中觀定位</b>——此喻說明二乘說法教化並非全然無用，而是「未有大菩薩時」的階段性效用，一旦般若光明（菩薩智慧）顯現，其功能便自然收攝，呼應中觀「不落有無兩邊」——不否定二乘價值，也不將其執為究竟的辯證立場。</td></tr></tbody></table><p class="bh35p16-note">本表為卷三十五第16品「螢火喻品」原典部分的原文·白話·中觀三欄對照：經文由佛告舍利弗「菩薩摩訶薩能作是念……」起，以螢火虫不作「我力能照一閻浮提」之念為喻，對照諸阿羅漢、辟支佛亦不作廣大度生之念；論主釋曰十方恆河沙舍利弗、目連不如一菩薩，猶如群螢不及一日，並以「夜能有所照，日出則不能」喻二乘教化的階段性效用。原文取自 dazhidulun-35 站內 L1 加密原典第16品（依實際位移順序收錄；原典重複轉引之殘句已依去重原則捨去，僅留完整段落；編者「編者前言／章節導讀」等現代析論框依鐵律不納入原文欄）。白話忠於原意、不增不減；中觀欄標出各段所涉的中觀義理。</p></div></div>
+<script id="wy-bh35p16-js">(function(){
+var CH=document.querySelectorAll("section.chapter");
+var BTN=document.getElementById("bh35p16Btn"),BOX=document.getElementById("bh35p16Box"),MODAL=document.getElementById("bh35p16Modal");
+if(!CH.length||!BTN||!BOX||!MODAL)return;
+var TARGET=15;
+var CBOX=document.getElementById("c35p16Box");
+function place(){
+  var b=null;
+  if(CBOX){var st=getComputedStyle(CBOX);var r=CBOX.getBoundingClientRect();if(st.position==="fixed"&&r.height>0&&st.display!=="none")b=Math.round(window.innerHeight-r.top)+8;}
+  if(b===null){var eb=document.querySelector(".wy-ebox");if(eb){var er=eb.getBoundingClientRect();if(er.height>4)b=Math.round(window.innerHeight-er.top)+8;}}
+  if(b===null)b=150;
+  BOX.style.bottom=b+"px"; /*BHPLACE*/
+}
+function curIdx(){var lim=window.innerHeight*0.35,idx=-1;for(var i=0;i<CH.length;i++){if(CH[i].getBoundingClientRect().top<lim)idx=i;}return idx;}
+function upd(){place();BOX.classList.toggle("show",curIdx()===TARGET);}
+var tk=false;function onS(){if(!tk){tk=true;requestAnimationFrame(function(){tk=false;upd();});}}
+window.addEventListener("scroll",onS,{passive:true});window.addEventListener("resize",onS);
+BTN.addEventListener("click",function(){MODAL.classList.add("open");});
+MODAL.addEventListener("click",function(e){if(e.target===MODAL||e.target.id==="bh35p16Close")MODAL.classList.remove("open");});
+document.addEventListener("keydown",function(e){if(e.key==="Escape")MODAL.classList.remove("open");});
+upd();var c=0,iv=setInterval(function(){upd();if(++c>40)clearInterval(iv);},250);
+})();</script>
+<!--WY-BH35P16:END-->
 </body></html>
